@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 62.5%;
+      font-family: Helvetica, sans-serif;
+    }
+
+    body {
+      width: 100%;
+      height: 100vh;
+
+      display: grid;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      height: 60rem;
+      width: 80rem;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 3rem;
+      padding: 2rem;
+    }
+
+    .editor-wrapper {
+      border: 2px solid #00adef;
+      border-radius: 1rem;
+      height: 6rem;
+      max-width: 70rem;
+
+      display: grid;
+      justify-content: center;
+      align-items: center;
+
+      min-width: 25rem;
+      width: fit-content;
+      height: auto;
+
+      grid-template-columns: 1rem 1fr max-content min-content;
+      grid-template-rows: 1rem 1fr max-content 1rem;
+
+      align-content: center;
+      column-gap: 1rem;
+    }
+
+    .editor {
+      font-size: 1.8rem;
+      grid-column: 2 / span 1;
+      grid-row: 2 / span 1;
+      cursor: text;
+    }
+
+    .paragraph {
+      min-width: 29.3rem;
+    }
+
+    .paragraph [contenteditable] {
+      font-size: 1.6rem;
+      line-height: 1.5;
+    }
+
+    .buttons-wrapper {
+      grid-column: 3 / span 1;
+      grid-row: 2 / span 1;
+
+      display: flex;
+      gap: 1rem;
+      justify-content: space-around;
+    }
+
+    button {
+      height: 3.2rem;
+      width: 3.2rem;
+      padding: 0.4rem;
+      border-radius: 0.6rem;
+      border: none;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    button svg {
+      height: 18px;
+    }
+
+    .bottom {
+      grid-row: 3 / span 1;
+    }
+
+    [contenteditable]:focus {
+      outline: none;
+    }
+
+    .header .editor {
+      font-size: 3.6rem;
+      line-height: 42px;
+    }
+
+    .header [contenteditable]:empty::before {
+      content: 'Add a title';
+      opacity: 0.4;
+    }
+
+    .paragraph [contenteditable]:empty::before {
+      content: 'Click to add description';
+      opacity: 0.4;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h1>Editable Text Component</h1>
+      <div class="editor-wrapper header">
+        <div class="editor" contenteditable="true"></div>
+        <div class="buttons-wrapper">
+          <button class="save">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button class="cancel">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-wrapper paragraph">
+        <div class="editor" contenteditable="true"></div>
+        <div class="buttons-wrapper">
+          <button class="save">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button class="cancel">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-wrapper header">
+        <div class="editor" contenteditable="true">Your video title</div>
+        <div class="buttons-wrapper">
+          <button class="save">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button class="cancel">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="editor-wrapper paragraph">
+        <div class="editor" contenteditable="true">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Facere est
+          maxime quas ea iste magnam laborum neque dolorum, molestias corporis.
+        </div>
+        <div class="buttons-wrapper">
+          <button class="save">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+          <button class="cancel">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      const buttonWrappers = document.querySelectorAll('.buttons-wrapper');
+      const editors = document.querySelectorAll('.editor-wrapper');
+
+      const INITIAL_HEIGHT = {
+        header: 42,
+        paragraph: 24,
+      };
+
+      // Putting buttons on the same row as content
+      editors.forEach((wrapper) => {
+        const editor = wrapper.querySelector('.editor');
+        const buttons = wrapper.querySelector('.buttons-wrapper');
+
+        const isHeader = editor.parentElement.classList.contains('header');
+
+        const isGreaterThanInitialHeight =
+          editor.offsetHeight >
+          (isHeader ? INITIAL_HEIGHT.header : INITIAL_HEIGHT.paragraph);
+
+        if (isGreaterThanInitialHeight) {
+          buttons.classList.add('bottom');
+        }
+
+        editor.addEventListener('input', (event) => {
+          const currentHeight =
+            event.currentTarget.offsetHeight ===
+            (isHeader ? INITIAL_HEIGHT.header : INITIAL_HEIGHT.paragraph);
+
+          if (currentHeight && buttons.classList.contains('bottom')) {
+            buttons.classList.remove('bottom');
+          }
+        });
+
+        // Putting buttons on the bottom right
+        editor.addEventListener('keydown', (event) => {
+          const isEnterKey = event.key === 'Enter';
+
+          if (isEnterKey && !buttons.classList.contains('bottom')) {
+            buttons.classList.add('bottom');
+          }
+        });
+      });
+
+      /**
+       * For Description component I can explicitly set the line-height and then use that
+       * value with the offseight
+       * condition
+       */
+    </script>
+  </body>
+</html>
