@@ -337,7 +337,7 @@
           if (
             !isHeader &&
             editor.parentElement.offsetWidth === MAX_WIDTH &&
-            !buttons.classList.contains('bottom')
+            !editor.parentElement.classList.contains('flex')
           ) {
             editor.parentElement.classList.add('flex');
             buttons.classList.add('flex-end');
